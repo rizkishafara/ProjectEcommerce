@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>malasngoding.com<< /title>
+    <title>malasngoding.com </title>
 </head>
 
 <body>

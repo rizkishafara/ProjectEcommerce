@@ -1,5 +1,3 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-
 <head>
     <title>malasngoding.com</title>
 </head>
