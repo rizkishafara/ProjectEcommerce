@@ -21,7 +21,7 @@ class upload extends CI_Controller
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('berkas')) {
             $error = array('error' => $this->upload->display_errors());
-            $this->load->view('v_upload', $error);
+            $this->load->view('upload/v_upload', $error);
         } else {
             $data['nama_file'] = $this->upload->data("file_name");
             $data['tipe_file'] = $this->upload->data('file_ext');
@@ -30,7 +30,7 @@ class upload extends CI_Controller
 
             $data = array('upload_data' => $this->upload->data());
             $data['berkas'] = $this->db->get('tb_file');
-            $this->load->view('v_upload_sukses', $data);
+            $this->load->view('upload/v_upload_sukses', $data);
         }
     }
 }
