@@ -14,7 +14,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Pengguna</h1>
                     <?php $this->load->view("admin/_partials/breadcrumb.php") ?>
 
                     <!--Content-->
@@ -32,6 +32,7 @@
                                             <th>Email</th>
                                             <th>Username</th>
                                             <th>Role</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,6 +43,10 @@
                                                 <td><?php echo $user->email ?></td>
                                                 <td><?php echo $user->username ?></td>
                                                 <td><?php echo $user->role ?></td>
+                                                <td width="250">
+                                                    <a href="<?php echo site_url('admin/user/edit/' . $user->id_user) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+                                                    <a onclick="deleteConfirm('<?php echo site_url('admin/user/delete/' . $user->id_user) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -57,6 +62,13 @@
         </div>
     </div>
     <?php $this->load->view("admin/_partials/js.php") ?>
+    <?php $this->load->view("admin/_partials/modal.php") ?>
+    <script>
+        function deleteConfirm(url) {
+            $('#btn-delete').attr('href', url);
+            $('#deleteModal').modal();
+        }
+    </script>
 </body>
 
 </html>

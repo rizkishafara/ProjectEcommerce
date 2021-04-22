@@ -21,10 +21,11 @@
     <main class="form-signin">
         <?php // Cetak jika ada notifikasi
         if ($this->session->flashdata('sukses')) {
-            echo '<p class="warning" style="margin: 10px 20px;">' . $this->session->flashdata('sukses') . '</p>';
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('sukses') . '</div>';
         } ?>
         <?php echo form_open('login'); ?>
         <form>
+            <H3>Login</H3>
 
             <div class="form-floating">
                 <input type="username" class="form-control" id="floatingInput" name="username" placeholder="username" value="<?php echo set_value('username'); ?>">

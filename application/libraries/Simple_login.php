@@ -36,11 +36,12 @@ session berdasar data user daritable users.
             $this->CI->session->set_userdata('username', $username);
             $this->CI->session->set_userdata('id_login', uniqid(rand()));
             $this->CI->session->set_userdata('id', $id);
+            //redirect(site_url('overview'));
 
             if ($role == 'user') {
-                redirect(site_url('../toko/page'));
+                redirect(base_url('toko/page'));
             } else {
-                redirect(site_url('../admin/Overview'));
+                redirect(base_url('admin/Overview'));
             }
         } else {
             //jika tidak ada, set notifikasi dalam flashdata.

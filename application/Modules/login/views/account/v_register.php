@@ -20,7 +20,12 @@
 
     <main class="form-signin">
         <?php echo form_open('../login/register'); ?>
+        <?php // Cetak jika ada notifikasi
+        if ($this->session->flashdata('berhasil')) {
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('berhasil') . '</div>';
+        } ?>
         <form>
+            <H3>Register Account</H3>
 
             <div class="form-floating">
                 <input type="name" class="form-control" id="floatingInput" name="name" placeholder="name" value="<?php echo set_value('name'); ?>">
@@ -45,10 +50,15 @@
             </div>
 
             <button class="w-100 btn btn-lg btn-success" name="btnDaftar" value="Daftar" type="submit">Daftar</button>
+            <?php echo form_close(); ?>
+            <?php echo anchor(
+                "../login/login",
+                "<button class='w-100 btn btn-lg btn-primary' type='submit'>Login</button>"
+            ); ?>
 
 
         </form>
-        <?php echo form_close(); ?>
+
     </main>
 
 

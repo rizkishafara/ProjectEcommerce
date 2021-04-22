@@ -26,6 +26,16 @@ class Shopping extends CI_Controller {
 		$this->load->view('shopping/tampil_cart',$data);
 		$this->load->view('themes/footer');
 	}
+
+	public function kategori($id)
+    {
+        $data['title'] = "Category";
+        $data['kategori'] = $this->keranjang_model->get_kategori_all();
+        $data['produk'] = $this->keranjang_model->get_produk_id($id);
+		$this->load->view('themes/header',$data);
+		$this->load->view('shopping/list_produk',$data);
+		$this->load->view('themes/footer');
+	}
 	
 	public function check_out()
 	{
@@ -35,11 +45,10 @@ class Shopping extends CI_Controller {
 		$this->load->view('themes/footer');
 	}
 	
-	public function detail_produk()
+	public function detail_produk($id)
 	{
-		$id=($this->uri->segment(3))?$this->uri->segment(3):0;
+		$data['produk'] = $this->keranjang_model->get_detail($id);
 		$data['kategori'] = $this->keranjang_model->get_kategori_all();
-		$data['detail'] = $this->keranjang_model->get_produk_id($id)->row_array();
 		$this->load->view('themes/header',$data);
 		$this->load->view('shopping/detail_produk',$data);
 		$this->load->view('themes/footer');
@@ -95,17 +104,17 @@ class Shopping extends CI_Controller {
 
 	public function proses_order()
 	{
-		//-------------------------Input data pelanggan--------------------------
+		//1. Input data pelanggan
 		$data_pelanggan = array('nama' => $this->input->post('nama'),
 							'email' => $this->input->post('email'),
 							'alamat' => $this->input->post('alamat'),
 							'telp' => $this->input->post('telp'));
 		$id_pelanggan = $this->keranjang_model->tambah_pelanggan($data_pelanggan);
-		//-------------------------Input data order------------------------------
+		//2. Input data order
 		$data_order = array('tanggal' => date('Y-m-d'),
 					   		'pelanggan' => $id_pelanggan);
 		$id_order = $this->keranjang_model->tambah_order($data_order);
-		//-------------------------Input data detail order-----------------------		
+		//3. Input data detail order		
 		if ($cart = $this->cart->contents())
 			{
 				foreach ($cart as $item)
@@ -117,7 +126,7 @@ class Shopping extends CI_Controller {
 						$proses = $this->keranjang_model->tambah_detail_order($data_detail);
 					}
 			}
-		//-------------------------Hapus shopping cart--------------------------		
+		//4. Hapus shopping cart--------------------------		
 		$this->cart->destroy();
 		$data['kategori'] = $this->keranjang_model->get_kategori_all();
 		$this->load->view('themes/header',$data);
@@ -125,4 +134,3 @@ class Shopping extends CI_Controller {
 		$this->load->view('themes/footer');
 	}
 }
-?>

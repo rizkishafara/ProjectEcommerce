@@ -9,7 +9,7 @@
     </div>
  <footer class="footer">
       <div class="container">
-        <p class="text-muted"><center>Contoh Shopping Cart dengan CodeIgniter dan Bootstrap. By:<a href="http://www.komang.my.id"> Komang.My.ID</a></center></p>
+        <p class="text-muted"><left>Copyright © Rizki 2021 </left></p>
       </div>
     </footer>
 

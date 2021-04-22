@@ -38,6 +38,12 @@ class User_model extends CI_Model
             ],
 
             [
+                'field' => 'password',
+                'label' => 'Password',
+                'rules' => 'required'
+            ],
+
+            [
                 'field' => 'role',
                 'label' => 'Role',
                 'rules' => 'required'
@@ -62,6 +68,7 @@ class User_model extends CI_Model
         $this->nama = $post["nama"];
         $this->email = $post["email"];
         $this->username = $post["username"];
+        $this->password = md5($post["password"]);
         $this->role = $post["role"];
         return $this->db->insert($this->_table, $this);
     }
@@ -73,6 +80,7 @@ class User_model extends CI_Model
         $this->nama = $post["nama"];
         $this->email = $post["email"];
         $this->username = $post["username"];
+        $this->password = md5($post["password"]);
         $this->role = $post["role"];
         return $this->db->update($this->_table, $this, array('id_user' => $post['id']));
     }

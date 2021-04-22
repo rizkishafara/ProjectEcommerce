@@ -14,7 +14,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Barang</h1>
                     <?php $this->load->view("admin/_partials/breadcrumb.php") ?>
 
                     <!--Content-->
@@ -31,8 +31,9 @@
                                             <th>Nama Barang</th>
                                             <th>Harga</th>
                                             <th>Kategori</th>
-                                            <th>deskripsi</th>
-                                            <th>gambar</th>
+                                            <th>Deskripsi</th>
+                                            <th>Gambar</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,7 +44,11 @@
                                                 <td><?php echo $row->harga ?></td>
                                                 <td><?php echo $row->kategori ?></td>
                                                 <td><?php echo $row->deskripsi ?></td>
-                                                <td><?php echo $row->gambar ?></td>
+                                                <td><img class="img-thumbnail" src="<?php echo base_url(); ?>assets/images/<?php echo $row->gambar ?>"></td>
+                                                <td width="250">
+                                                    <a href="<?php echo site_url('admin/barang/edit/' . $row->id_produk) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
+                                                    <a onclick="deleteConfirm('<?php echo site_url('admin/barang/delete/' . $row->id_produk) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -59,6 +64,13 @@
         </div>
     </div>
     <?php $this->load->view("admin/_partials/js.php") ?>
+    <?php $this->load->view("admin/_partials/modal.php") ?>
+    <script>
+        function deleteConfirm(url) {
+            $('#btn-delete').attr('href', url);
+            $('#deleteModal').modal();
+        }
+    </script>
 </body>
 
 </html>

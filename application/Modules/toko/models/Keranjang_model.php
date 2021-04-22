@@ -26,11 +26,11 @@ class Keranjang_model extends CI_Model {
 	
 	public  function get_produk_id($id)
 	{
-		$this->db->select('tbl_produk.*,nama_kategori');
+		$this->db->select('*');
 		$this->db->from('tbl_produk');
 		$this->db->join('tbl_kategori', 'kategori=tbl_kategori.id','left');
-   		$this->db->where('id_produk',$id);
-        return $this->db->get();
+   		$this->db->where('kategori',$id);
+        return $this->db->get()->result_array();
     }	
 	
 	public function tambah_pelanggan($data)
@@ -51,5 +51,8 @@ class Keranjang_model extends CI_Model {
 	{
 		$this->db->insert('tbl_detail_order', $data);
 	}
+	public function get_detail($detail)
+    {
+        return $this->db->get_where('tbl_produk', ['id_produk' => $detail])->row_array();
+    }
 }
-?>

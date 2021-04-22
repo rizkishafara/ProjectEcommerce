@@ -9,7 +9,7 @@ foreach ($produk as $row) {
           <h4 class="card-title">
             <a href="#"><?php echo $row['nama_produk']; ?></a>
           </h4>
-          <h5>Rp. <?php echo number_format($row['harga'], 0, ",", "."); ?></h5>
+          <h5>Rp. <?php echo number_format($row['harga'], 0, ",","."); ?></h5>
           <p class="card-text"><?php echo $row['deskripsi']; ?></p>
         </div>
         <div class="card-footer">
