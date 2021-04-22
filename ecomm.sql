@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `tbl_detail_order`;
 CREATE TABLE `tbl_detail_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` int(10) DEFAULT NULL,
-  `produk` int(10) DEFAULT NULL,
+  `id_produk` int(10) DEFAULT NULL,
   `qty` int(10) DEFAULT NULL,
   `harga` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -72,7 +72,7 @@ CREATE TABLE `tbl_detail_order` (
 
 /*Data for the table `tbl_detail_order` */
 
-insert  into `tbl_detail_order`(`id`,`order_id`,`produk`,`qty`,`harga`) values 
+insert  into `tbl_detail_order`(`id`,`order_id`,`id_produk`,`qty`,`harga`) values 
 (1,1,9,1,'6100000'),
 (2,1,2,1,'6250000');
 
@@ -100,13 +100,13 @@ DROP TABLE IF EXISTS `tbl_order`;
 CREATE TABLE `tbl_order` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `tanggal` date DEFAULT NULL,
-  `pelanggan` int(10) DEFAULT NULL,
+  `id_pelanggan` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_order` */
 
-insert  into `tbl_order`(`id`,`tanggal`,`pelanggan`) values 
+insert  into `tbl_order`(`id`,`tanggal`,`id_pelanggan`) values 
 (1,'2021-04-15',1);
 
 /*Table structure for table `tbl_pelanggan` */
@@ -139,7 +139,7 @@ CREATE TABLE `tbl_produk` (
   `gambar` varchar(50) DEFAULT NULL,
   `kategori` int(10) DEFAULT NULL,
   PRIMARY KEY (`id_produk`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_produk` */
 
@@ -152,7 +152,8 @@ insert  into `tbl_produk`(`id_produk`,`nama_produk`,`deskripsi`,`harga`,`gambar`
 (6,'Smartphone 3','smartphone 3 bagus','5100000','hp3.jpg',2),
 (7,'Robot 1','robot tank','3500000','robot1.jpg',3),
 (8,'Robot 2','robot penganggkut','4500000','robot2.jpg',3),
-(9,'Robot 3','robot mainan','6100000','robot3.jpg',3);
+(9,'Robot 3','robot mainan','6100000','robot3.jpg',3),
+(10,'Asus ROG','laptop gaming banget','19000000','asus.jpg',1);
 
 /*Table structure for table `users` */
 
@@ -166,7 +167,7 @@ CREATE TABLE `users` (
   `password` varchar(64) NOT NULL,
   `role` enum('user','admin') NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `users` */
 
@@ -174,7 +175,9 @@ insert  into `users`(`id_user`,`nama`,`email`,`username`,`password`,`role`) valu
 (1,'admin','admin@gmail.com','admin','21232f297a57a5a743894a0e4a801fc3','admin'),
 (2,'Rizki','rizkishafara99@gmail.com','rizki','202cb962ac59075b964b07152d234b70','user'),
 (4,'user','user@gmail.com','user','ee11cbb19052e40b07aac0ca060c23ee','user'),
-(5,'coba','coba@gmail.com','coba','c3ec0f7b054e729c5a716c8125839829','user');
+(5,'coba','coba@gmail.com','coba','c3ec0f7b054e729c5a716c8125839829','user'),
+(6,'Muhammad juan','juan@gmail.com','juan','1cc39ffd758234422e1f75beadfc5fb2','user'),
+(7,'Rian','rian@gmail.com','rian','202cb962ac59075b964b07152d234b70','user');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
