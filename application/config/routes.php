@@ -53,4 +53,6 @@ $route['default_controller'] = 'login/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['admin'] = '../admin/Overview';
-$route['toko'] = '../toko/page';
+$route['toko'] = 'toko/page';
+$pesan['pesan'] = 'pesan/form';
+$route['search_ajax'] = '../search_ajax/search';

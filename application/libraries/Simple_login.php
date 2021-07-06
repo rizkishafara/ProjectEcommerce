@@ -45,7 +45,7 @@ session berdasar data user daritable users.
             }
         } else {
             //jika tidak ada, set notifikasi dalam flashdata.
-            $this->CI->session->set_flashdata('sukses', 'Username atau password anda salah,silakan coba lagi.. ');
+            $this->CI->session->set_flashdata('gagal', 'Username atau password anda salah,silakan coba lagi.. ');
             //redirect ke halaman login
             redirect(site_url('login'));
         }
@@ -60,7 +60,7 @@ session berdasar data user daritable users.
         //cek session username
         if ($this->CI->session->userdata('username') == '') {
             //set notifikasi
-            $this->CI->session->set_flashdata('sukses', 'Anda belum login');
+            $this->CI->session->set_flashdata('gagal', 'Anda belum login');
             //alihkan ke halaman login
             redirect(site_url('login'));
         }

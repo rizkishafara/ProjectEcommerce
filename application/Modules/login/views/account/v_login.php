@@ -20,9 +20,12 @@
 
     <main class="form-signin">
         <?php // Cetak jika ada notifikasi
-        if ($this->session->flashdata('sukses')) {
+        if ($this->session->flashdata('gagal')) {
+            echo "<div class='alert alert-danger' role='alert'>" . $this->session->flashdata('gagal') . '</div>';
+        } else if ($this->session->flashdata('sukses')) {
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('sukses') . '</div>';
-        } ?>
+        }
+        ?>
         <?php echo form_open('login'); ?>
         <form>
             <H3>Login</H3>

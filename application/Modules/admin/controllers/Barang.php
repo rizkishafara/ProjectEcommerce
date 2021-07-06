@@ -32,7 +32,7 @@ class Barang extends CI_Controller
     {
         if (!isset($id)) redirect('barang');
 
-        $barang = $this->Barang_model;
+        $barang = $this->Barang_model;  //ambil fungsi dari model
         $validation = $this->form_validation;
         $validation->set_rules($barang->rules());
 
@@ -41,10 +41,10 @@ class Barang extends CI_Controller
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-        $data["barang"] = $barang->getById($id);
+        $data["barang"] = $barang->getById($id); //fungsi get id dari Barang_model
         if (!$data["barang"]) show_404();
 
-        $this->load->view("barang/edit_form", $data);
+        $this->load->view("barang/edit_form", $data); //kirim ke view
     }
 
     public function delete($id = null)
