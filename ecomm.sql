@@ -36,8 +36,28 @@ CREATE TABLE `barang` (
 insert  into `barang`(`id_brg`,`nama_brg`,`harga`,`kategori`,`deskripsi`,`stok`,`gambar`) values 
 (1,'pensil',3000,'alat_tulis','pensil untuk menulis kata',100,'pensil.jpg'),
 (2,'tv',1000000,'elektronik','tv lebih dari tv jadul',10,'tv.jpg'),
-(3,'sapu lidi',15000,'rumah_tangga','untuk menyapu dosamu',25,'sapu.jpg'),
-(4,'velg rossi',5000000,'otomotif','untuk motor resing',5,'velg.jpg');
+(3,'sapu lidi',15000,'rumah_tangga','untuk menyapu dosamu',25,'sapu.jpg');
+
+/*Table structure for table `produk_hapus` */
+
+DROP TABLE IF EXISTS `produk_hapus`;
+
+CREATE TABLE `produk_hapus` (
+  `id_produk` int(10) NOT NULL,
+  `nama_produk` varchar(50) DEFAULT NULL,
+  `deskripsi` varchar(50) DEFAULT NULL,
+  `harga` varchar(10) DEFAULT NULL,
+  `gambar` varchar(50) DEFAULT NULL,
+  `kategori` int(10) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `user` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id_produk`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `produk_hapus` */
+
+insert  into `produk_hapus`(`id_produk`,`nama_produk`,`deskripsi`,`harga`,`gambar`,`kategori`,`tanggal`,`user`) values 
+(9,'Robot 3','robot mainan','6100000','robot3.jpg',3,'2021-05-27','root@localhost');
 
 /*Table structure for table `tb_file` */
 
@@ -151,9 +171,7 @@ insert  into `tbl_produk`(`id_produk`,`nama_produk`,`deskripsi`,`harga`,`gambar`
 (5,'Smartphone 2','smartphone 2 gaming','4300000','hp2.jpg',2),
 (6,'Smartphone 3','smartphone 3 bagus','5100000','hp3.jpg',2),
 (7,'Robot 1','robot tank','3500000','robot1.jpg',3),
-(8,'Robot 2','robot penganggkut','4500000','robot2.jpg',3),
-(9,'Robot 3','robot mainan','6100000','robot3.jpg',3),
-(10,'Asus ROG','laptop gaming banget','19000000','asus.jpg',1);
+(8,'Robot 2','robot penganggkut','4500000','robot2.jpg',3);
 
 /*Table structure for table `users` */
 
@@ -178,6 +196,39 @@ insert  into `users`(`id_user`,`nama`,`email`,`username`,`password`,`role`) valu
 (5,'coba','coba@gmail.com','coba','c3ec0f7b054e729c5a716c8125839829','user'),
 (6,'Muhammad juan','juan@gmail.com','juan','1cc39ffd758234422e1f75beadfc5fb2','user'),
 (7,'Rian','rian@gmail.com','rian','202cb962ac59075b964b07152d234b70','user');
+
+/* Trigger structure for table `tbl_produk` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `produk_hapus` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `produk_hapus` AFTER DELETE ON `tbl_produk` FOR EACH ROW 
+BEGIN
+INSERT INTO produk_hapus(
+    id_produk,
+    nama_produk,
+    deskripsi,
+    harga,
+    gambar,
+    kategori,
+    tanggal,
+    user
+)
+VALUES(
+    OLD.id_produk,
+    OLD.nama_produk,
+    OLD.deskripsi,
+    OLD.harga,
+    OLD.gambar,
+    OLD.kategori,
+    SYSDATE(),
+    CURRENT_USER
+);
+END */$$
+
+
+DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
